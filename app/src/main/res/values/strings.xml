@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Bedu shop</string>
+    <string name="hello">Hola, este es el modulo 2</string>
+    <string name="clicked">Se le ha dado click al boton</string>
+    <string name="edit">Escribe tu telefono</string>
+    <string name="email">Correo electrónico</string>
+    <string name="pwd">Contraseña</string>
+    <string name="botonLogin">Iniciar Sesión</string>
+    <string name="botonRegister">Regístrate aquí</string>
+    <string name="errorUser">Campo obligatorio</string>
+    <string name="errorPass">Campo obligatorio</string>
+    <string name="successToast">Inicio de sesión exitoso</string>
+</resources>

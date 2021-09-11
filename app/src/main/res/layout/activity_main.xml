@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:background="@color/backgroundLogin">
+
+    <!---
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="120dp"
+        android:src="@drawable/bedushop"
+        android:scaleType="fitCenter"/>
+    -->
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/user"
+        android:drawablePadding="12dp"
+        android:hint="@string/email"
+        android:inputType="text"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/errorUser"
+        android:textStyle="bold"
+        android:textColor="@color/btnColor"
+        />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/pwd"
+        android:drawablePadding="12dp"
+        android:hint="@string/pwd"
+        android:inputType="text"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/errorPass"
+        android:textStyle="bold"
+        android:textColor="@color/btnColor"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnLogin"
+        android:text="@string/botonLogin"
+        android:backgroundTint="@color/btnColor"
+        android:layout_marginTop="48dp"/>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnnRegister"
+        android:text="@string/botonRegister"
+        style="?android:attr/borderlessButtonStyle"
+        android:textAllCaps="false"
+        />
+</LinearLayout>
