@@ -3,81 +3,37 @@ package org.bedu.bedushop
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import androidx.navigation.fragment.NavHostFragment
+
+
+//validación en la MainActivity
+// verificar si ya se inicio sesión o no, en el caso de que no haya iniciado sesión definir una transición a la activity login
+
+const val logggedIn = false
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var btnLogin : Button
-    private lateinit var btnRegister: Button
-    private lateinit var inputEmail : EditText
-    private lateinit var inputPass : EditText
-    private lateinit var errorUser : TextView
-    private lateinit var errorPass : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        btnLogin = findViewById(R.id.btnLogin)
-        btnRegister = findViewById(R.id.register)
+//      si el user está logueado no ingresa al layout login
+        if(logggedIn) {
+            setContentView(R.layout.activity_main)
 
-        inputEmail = findViewById(R.id.email)
-        inputPass = findViewById(R.id.password)
-
-        errorUser = findViewById(R.id.errorUser)
-        errorPass = findViewById(R.id.errorPass)
-
-
-        btnLogin.setOnClickListener {
-
-            if(inputEmail.text.isBlank() && inputPass.text.isBlank()) {
-                errorUser.text = getString(R.string.errorUser)
-                errorPass.text = getString(R.string.errorPass)
-            } else if(inputEmail.text.isBlank()) {
-                errorUser.text = getString(R.string.errorUser)
-            } else if (inputPass.text.isBlank()) {
-                errorPass.text = getString(R.string.errorPass)
-            } else {
-                // TOAST
-                val duration = Toast.LENGTH_SHORT
-                val toast = Toast.makeText(applicationContext, getString(R.string.successToast), duration)
-                toast.show()
+            val listFragment = supportFragmentManager.findFragmentById(R.id.fragmentList) as ListFragment
+            listFragment.setListener {
+                val detailFragment = supportFragmentManager.findFragmentById(R.id.fragmentDetail) as DetailFragment
+                val intent = Intent(this, DetailActivity::class.java)
+                intent.putExtra(DetailActivity.PRODUCT, it)
+                startActivity(intent)
             }
-        }
-
-        btnRegister.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java).apply {
+        } else {
+            setContentView(R.layout.activity_login_register)
+            val intent = Intent(this, LoginRegisterActivity::class.java).apply {
                 putExtras(intent)
             }
 
             startActivity(intent)
         }
-
-        inputEmail.addTextChangedListener(object: TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
-            }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                //text.text = input.text
-                if(errorUser.text.isNotBlank()) errorUser.text = ""
-            }
-        })
-
-        inputPass.addTextChangedListener(object: TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
-            override fun afterTextChanged(p0: Editable?) { }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if(errorPass.text.isNotBlank()) errorPass.text = ""
-            }
-
-        })
     }
 }
